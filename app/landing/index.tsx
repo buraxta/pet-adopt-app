@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
 import React from "react";
 import { Image, Pressable, SafeAreaView, Text, View } from "react-native";
 
@@ -20,11 +20,14 @@ export default function LoginScreen() {
           Let's adopt a pet and make lifelong companions!
         </Text>
       </View>
-      <Pressable className="bg-green-900 w-[80%] h-[50px] rounded-full mt-10 mx-auto items-center justify-center">
-        <Text className="text-white text-[1.5rem] font-outfit-bold font-pbold">
+      <Link
+        href={"/(home)"}
+        className="bg-green-900 w-[80%] h-[50px] rounded-full mt-10 mx-auto pt-2 "
+      >
+        <Text className="text-white text-[1.5rem] font-outfit-bold font-pbold text-center">
           Get Started
         </Text>
-      </Pressable>
+      </Link>
     </SafeAreaView>
   );
 }
