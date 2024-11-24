@@ -32,7 +32,7 @@ export default function Page() {
 
       if (signInAttempt.status === "complete") {
         await setActive({ session: signInAttempt.createdSessionId });
-        router.replace("/");
+        router.replace("/(tabs)/home");
       } else {
         console.error(JSON.stringify(signInAttempt, null, 2));
         // Hata durumunda Alert ile kullanıcıya bilgi ver

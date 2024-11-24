@@ -1,19 +1,9 @@
-import * as React from "react";
-import {
-  TextInput,
-  View,
-  SafeAreaView,
-  ImageBackground,
-  Text,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Input, InputField } from "@/components/ui/input";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, Stack, useRouter } from "expo-router";
-import { Input, InputField } from "@/components/ui/input";
-import { Button, ButtonText } from "@/components/ui/button";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as React from "react";
+import { Image, ImageBackground, Text, View } from "react-native";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -57,7 +47,7 @@ export default function SignUpScreen() {
 
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
-        return router.replace("/(home)");
+        return router.replace("/(tabs)/home");
       } else {
         console.error(JSON.stringify(completeSignUp, null, 2));
       }

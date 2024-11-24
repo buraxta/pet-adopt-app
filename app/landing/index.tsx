@@ -32,7 +32,7 @@ export default function LoginScreen() {
           </Text>
         </View>
         <Link
-          href={"/(home)"}
+          href={"/(tabs)/home"}
           className="bg-yellow-500 w-[80%] h-[50px] rounded-full mt-10 mx-auto pt-2 border-[1px] border-black"
         >
           <Text className="text-white text-[1.5rem] font-outfit-bold font-pbold text-center ">
