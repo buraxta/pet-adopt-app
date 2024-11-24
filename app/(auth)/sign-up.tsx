@@ -6,11 +6,14 @@ import {
   ImageBackground,
   Text,
   Image,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, Stack, useRouter } from "expo-router";
 import { Input, InputField } from "@/components/ui/input";
 import { Button, ButtonText } from "@/components/ui/button";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -54,7 +57,7 @@ export default function SignUpScreen() {
 
       if (completeSignUp.status === "complete") {
         await setActive({ session: completeSignUp.createdSessionId });
-        router.replace("/");
+        return router.replace("/(home)");
       } else {
         console.error(JSON.stringify(completeSignUp, null, 2));
       }
@@ -66,7 +69,7 @@ export default function SignUpScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 ">
+    <View>
       <Stack.Screen options={{ headerShown: false }} />
       <ImageBackground
         source={require("@/assets/images/login-bg.png")}
@@ -154,13 +157,14 @@ export default function SignUpScreen() {
             <Input
               variant="outline"
               size="xl"
-              className="w-[90%] mb-4"
+              className="w-[90%] mb-4 bg-white rounded-full h-[4.5rem] "
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
             >
               <InputField
                 value={code}
+                className="ml-3"
                 placeholder="Code..."
                 secureTextEntry={true}
                 onChangeText={(code) => setCode(code)}
@@ -189,6 +193,6 @@ export default function SignUpScreen() {
           </Link>
         </View>
       </ImageBackground>
-    </SafeAreaView>
+    </View>
   );
 }
