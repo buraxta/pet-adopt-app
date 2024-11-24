@@ -3,7 +3,7 @@ import { Input, InputField } from "@/components/ui/input";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, Stack, useRouter } from "expo-router";
 import * as React from "react";
-import { Image, ImageBackground, Text, View } from "react-native";
+import { Alert, Image, ImageBackground, Text, View } from "react-native";
 
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -11,6 +11,8 @@ export default function SignUpScreen() {
 
   const [emailAddress, setEmailAddress] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [username, setUsername] = React.useState("");
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
 
@@ -18,11 +20,16 @@ export default function SignUpScreen() {
     if (!isLoaded) {
       return;
     }
+    if (password !== confirmPassword) {
+      Alert.alert("Error", "Passwords do not match", [{ text: "OK" }]);
+      return;
+    }
 
     try {
       await signUp.create({
         emailAddress,
         password,
+        username,
       });
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
@@ -32,6 +39,8 @@ export default function SignUpScreen() {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
       console.error(JSON.stringify(err, null, 2));
+      // hata durumlarında Alert ile kullanıcıya bilgi ver
+      Alert.alert("Error", err.errors[0].longMessage, [{ text: "OK" }]);
     }
   };
 
@@ -89,7 +98,22 @@ export default function SignUpScreen() {
             <Input
               variant="outline"
               size="xl"
-              className="w-[90%] mb-4 bg-white rounded-full h-[4.5rem] "
+              className="w-[90%] mb-4 bg-white rounded-full h-[3.5rem] "
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+            >
+              <InputField
+                value={username}
+                className="ml-3"
+                placeholder="Username..."
+                onChangeText={(username) => setUsername(username)}
+              />
+            </Input>
+            <Input
+              variant="outline"
+              size="xl"
+              className="w-[90%] mb-4 bg-white rounded-full h-[3.5rem] "
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
@@ -110,7 +134,7 @@ export default function SignUpScreen() {
             <Input
               variant="outline"
               size="xl"
-              className="w-[90%] mb-4 bg-white rounded-full h-[4.5rem] "
+              className="w-[90%] mb-4 bg-white rounded-full h-[3.5rem] "
               isDisabled={false}
               isInvalid={false}
               isReadOnly={false}
@@ -121,6 +145,22 @@ export default function SignUpScreen() {
                 className="ml-3"
                 secureTextEntry={true}
                 onChangeText={(password) => setPassword(password)}
+              />
+            </Input>
+            <Input
+              variant="outline"
+              size="xl"
+              className="w-[90%] mb-4 bg-white rounded-full h-[3.5rem] "
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+            >
+              <InputField
+                value={confirmPassword}
+                placeholder="Confirm Password..."
+                className="ml-3"
+                secureTextEntry={true}
+                onChangeText={(password) => setConfirmPassword(password)}
               />
             </Input>
             {/* <Button title="Sign Up" onPress={onSignUpPress} /> */}
