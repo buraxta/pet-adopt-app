@@ -1,7 +1,14 @@
 import * as React from "react";
-import { TextInput, View, SafeAreaView } from "react-native";
+import {
+  TextInput,
+  View,
+  SafeAreaView,
+  ImageBackground,
+  Text,
+  Image,
+} from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
-import { useRouter } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import { Input, InputField } from "@/components/ui/input";
 import { Button, ButtonText } from "@/components/ui/button";
 
@@ -59,96 +66,129 @@ export default function SignUpScreen() {
   };
 
   return (
-    <SafeAreaView className="flex-1 justify-center items-center">
-      {!pendingVerification && (
-        <>
-          {/* <TextInput
+    <SafeAreaView className="flex-1 ">
+      <Stack.Screen options={{ headerShown: false }} />
+      <ImageBackground
+        source={require("@/assets/images/login-bg.png")}
+        className="w-full h-full justify-center items-center"
+      >
+        <View className="-mt-[10rem]">
+          <Text className="font-pbold text-4xl text-red-800">Welcome!</Text>
+          <Text className="text-xl">
+            {pendingVerification
+              ? "Please enter the code sent to your email."
+              : "Please enter your email and password."}
+          </Text>
+          <Image
+            source={require("@/assets/images/catlogo.png")}
+            className="w-52 object-contain h-52 mx-auto"
+            resizeMode="contain"
+          />
+        </View>
+        {!pendingVerification && (
+          <>
+            {/* <TextInput
             autoCapitalize="none"
             value={emailAddress}
             placeholder="Email..."
             onChangeText={(email) => setEmailAddress(email)}
           /> */}
-          <Input
-            variant="outline"
-            size="xl"
-            className="w-[90%] mb-4"
-            isDisabled={false}
-            isInvalid={false}
-            isReadOnly={false}
-          >
-            <InputField
-              value={emailAddress}
-              placeholder="Email..."
-              onChangeText={(email) => setEmailAddress(email)}
-            />
-          </Input>
-          {/* <TextInput
+            <Input
+              variant="outline"
+              size="xl"
+              className="w-[90%] mb-4 bg-white rounded-full h-[4.5rem] "
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+            >
+              <InputField
+                value={emailAddress}
+                className="ml-3"
+                placeholder="Email..."
+                onChangeText={(email) => setEmailAddress(email)}
+              />
+            </Input>
+            {/* <TextInput
             value={password}
             placeholder="Password..."
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
           /> */}
-          <Input
-            variant="outline"
-            size="xl"
-            className="w-[90%] mb-4"
-            isDisabled={false}
-            isInvalid={false}
-            isReadOnly={false}
-          >
-            <InputField
-              value={password}
-              placeholder="Password..."
-              secureTextEntry={true}
-              onChangeText={(password) => setPassword(password)}
-            />
-          </Input>
-          {/* <Button title="Sign Up" onPress={onSignUpPress} /> */}
-          <Button
-            size="md"
-            variant="solid"
-            action="primary"
-            className="bg-black w-[90%] mb-4 "
-            onPress={onSignUpPress}
-          >
-            <ButtonText className="text-white">Sign Up!</ButtonText>
-          </Button>
-        </>
-      )}
-      {pendingVerification && (
-        <>
-          {/* <TextInput
+            <Input
+              variant="outline"
+              size="xl"
+              className="w-[90%] mb-4 bg-white rounded-full h-[4.5rem] "
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+            >
+              <InputField
+                value={password}
+                placeholder="Password..."
+                className="ml-3"
+                secureTextEntry={true}
+                onChangeText={(password) => setPassword(password)}
+              />
+            </Input>
+            {/* <Button title="Sign Up" onPress={onSignUpPress} /> */}
+            <Button
+              size="md"
+              variant="solid"
+              action="primary"
+              className="bg-yellow-500 w-[90%] mb-4 rounded-full mt-5 h-[4rem] "
+              onPress={onSignUpPress}
+            >
+              <ButtonText className="text-white font-pbold">
+                Sign up!
+              </ButtonText>
+            </Button>
+          </>
+        )}
+        {pendingVerification && (
+          <>
+            {/* <TextInput
             value={code}
             placeholder="Code..."
             onChangeText={(code) => setCode(code)}
           /> */}
-          <Input
-            variant="outline"
-            size="xl"
-            className="w-[90%] mb-4"
-            isDisabled={false}
-            isInvalid={false}
-            isReadOnly={false}
-          >
-            <InputField
-              value={code}
-              placeholder="Code..."
-              secureTextEntry={true}
-              onChangeText={(code) => setCode(code)}
-            />
-          </Input>
-          {/* <Button title="Verify Email" onPress={onPressVerify} /> */}
-          <Button
-            size="md"
-            variant="solid"
-            action="primary"
-            className="bg-black w-[90%] mb-4 "
-            onPress={onPressVerify}
-          >
-            <ButtonText className="text-white">Verify Email</ButtonText>
-          </Button>
-        </>
-      )}
+            <Input
+              variant="outline"
+              size="xl"
+              className="w-[90%] mb-4"
+              isDisabled={false}
+              isInvalid={false}
+              isReadOnly={false}
+            >
+              <InputField
+                value={code}
+                placeholder="Code..."
+                secureTextEntry={true}
+                onChangeText={(code) => setCode(code)}
+              />
+            </Input>
+            {/* <Button title="Verify Email" onPress={onPressVerify} /> */}
+            <Button
+              size="md"
+              variant="solid"
+              action="primary"
+              className="bg-yellow-500 w-[90%] mb-4 rounded-full mt-5 h-[4rem] "
+              onPress={onPressVerify}
+            >
+              <ButtonText className="text-white font-pbold">
+                Verify Email
+              </ButtonText>
+            </Button>
+          </>
+        )}
+        <View className="w-full justify-center flex-row gap-3 mt-2">
+          <Text className="font-pbold text-slate-800">
+            Already have an account
+          </Text>
+          <Link href="/sign-in">
+            <Text className="text-blue-600 font-pbold">Sign in!</Text>
+          </Link>
+        </View>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
