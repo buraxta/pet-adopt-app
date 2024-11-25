@@ -5,7 +5,7 @@ import { useUser } from "@clerk/clerk-expo";
 export default function Header() {
   const { user } = useUser();
   return (
-    <View className="flex-row justify-between items-center">
+    <View className="flex-row justify-between  items-center ">
       <View className="items-start  justify-start">
         <Text className="text-[1rem] font-pmedium">Welcome,</Text>
         <Text className="text-2xl font-pmedium">{user?.username}</Text>
