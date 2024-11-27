@@ -32,7 +32,9 @@ export default function ListByCategory() {
         className="mt-4"
         showsHorizontalScrollIndicator={false}
         data={petList}
-        renderItem={({ item, index }) => <PetListItem item={item} />}
+        renderItem={({ item, index }) => (
+          <PetListItem key={index} item={item} />
+        )}
         keyExtractor={(item) => item.id}
       />
     </View>

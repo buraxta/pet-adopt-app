@@ -32,6 +32,7 @@ export default function Category({
         numColumns={4}
         renderItem={({ item, index }) => (
           <Pressable
+            key={index}
             className="flex-1 "
             onPress={() => {
               category(item.name);
@@ -40,9 +41,11 @@ export default function Category({
           >
             <View
               key={index}
-              className={`bg-sky-200 p-4 items-center border  rounded-2xl border-gray-600 m-1 ${
-                selectedCategory === item.name ? "bg-pink-400" : ""
-              }`}
+              className={`bg-sky-200 p-4 items-center border   rounded-2xl border-gray-600 m-1 `}
+              style={{
+                backgroundColor:
+                  selectedCategory === item.name ? "#f472b6" : "#bae6fd",
+              }}
             >
               <Image
                 source={{ uri: item.imageUrl }}
