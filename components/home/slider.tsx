@@ -37,7 +37,7 @@ export default function Slider() {
             />
           </View>
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.imageUrl}
       />
     </View>
   );
