@@ -1,5 +1,5 @@
 import { View, Text, FlatList } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Category from "./Category";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/config/FirebaseConfig";
@@ -14,14 +14,21 @@ export default function ListByCategory() {
     setPetList([]);
     const q = query(
       collection(db, "Pets"),
-      where("category", "==", category ?? "Dogs")
+      where("category", "==", category ?? "Cats")
     );
+
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      setPetList((petList) => [...petList, doc.data()]);
+      setPetList((petList) => [...petList, { id: doc.id, ...doc.data() }]);
     });
+
     setIsLoading(false);
   };
+
+  useEffect(() => {
+    getPetList("Cats");
+  }, []);
+
   return (
     <View>
       <Category category={getPetList} />

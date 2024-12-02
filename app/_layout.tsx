@@ -35,7 +35,6 @@ export default function RootLayout() {
       try {
         const item = await SecureStore.getItemAsync(key);
         if (item) {
-          console.log(`${key} was used 🔐 \n`);
         } else {
           console.log("No values stored under key: " + key);
         }
@@ -68,6 +67,18 @@ export default function RootLayout() {
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
+          <Stack.Screen
+            name="petdetails/[id]"
+            options={{
+              headerTransparent: true,
+              headerTitle: "",
+              headerTintColor: "white",
+            }}
+          />
+          <Stack.Screen
+            name="addNewPet/index"
+            options={{ headerShown: false }}
+          />
         </Stack>
         <StatusBar style="auto" />
       </ClerkLoaded>

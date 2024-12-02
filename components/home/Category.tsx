@@ -9,7 +9,7 @@ export default function Category({
   category: (category: string) => void;
 }) {
   const [categories, setCategories] = useState<any[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("Dogs");
+  const [selectedCategory, setSelectedCategory] = useState("Cats");
 
   useEffect(() => {
     GetCategories();

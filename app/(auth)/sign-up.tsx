@@ -1,5 +1,6 @@
 import { Button, ButtonText } from "@/components/ui/button";
 import { Input, InputField } from "@/components/ui/input";
+import { addUser } from "@/libs/addFav";
 import { useSignUp } from "@clerk/clerk-expo";
 import { Link, Stack, useRouter } from "expo-router";
 import * as React from "react";
@@ -26,11 +27,14 @@ export default function SignUpScreen() {
     }
 
     try {
-      await signUp.create({
+      const result = await signUp.create({
         emailAddress,
         password,
         username,
       });
+
+      // Add user to the database
+      await addUser(emailAddress);
 
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
 
