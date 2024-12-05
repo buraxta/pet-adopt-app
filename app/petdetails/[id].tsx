@@ -5,7 +5,15 @@ import { checkFavorite } from "@/libs/favChecker";
 import { useUser } from "@clerk/clerk-expo";
 import { AntDesign, Feather, Fontisto } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
@@ -25,6 +33,7 @@ export default function PetDetails() {
   const [readMore, setReadMore] = useState(true);
   const [petDetails, setPetDetails] = useState<any>(null);
   // const [isFav, setIsFav] = useState<boolean | null>(null);
+  const user = useUser();
 
   useEffect(() => {
     const fetchPetDetails = async () => {
@@ -38,6 +47,51 @@ export default function PetDetails() {
     };
     fetchPetDetails();
   }, [id]);
+
+  const initiateChat = async () => {
+    const docId1 =
+      user?.user?.emailAddresses[0].emailAddress +
+      "_" +
+      petDetails?.user?.email;
+    const docId2 =
+      petDetails?.user?.email +
+      "_" +
+      user?.user?.emailAddresses[0].emailAddress;
+
+    const q = query(
+      collection(db, "Chats"),
+      where("id", "in", [docId1, docId2])
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      router.push({
+        pathname: "/chat",
+        params: { id: doc.id },
+      });
+    });
+
+    if (querySnapshot.empty) {
+      await setDoc(doc(db, "Chats", docId1), {
+        id: docId1,
+        users: [
+          {
+            email: user?.user?.emailAddresses[0].emailAddress,
+            imageUrl: user?.user?.imageUrl,
+            name: user?.user?.fullName,
+          },
+          {
+            email: petDetails?.user?.email,
+            imageUrl: petDetails?.user?.imageUrl,
+            name: petDetails?.user?.name,
+          },
+        ],
+      });
+      router.push({
+        pathname: "/chat",
+        params: { id: docId1 },
+      });
+    }
+  };
 
   return (
     <SafeAreaView className="flex-1 relative">
@@ -127,7 +181,10 @@ export default function PetDetails() {
         </View>
       </ScrollView>
       <View className="absolute bottom-0 w-full">
-        <TouchableOpacity className="w-full h-20 bg-sky-300 items-center justify-center ">
+        <TouchableOpacity
+          onPress={initiateChat}
+          className="w-full h-20 bg-sky-300 items-center justify-center "
+        >
           <Text className="text-center w-full font-pbold text-xl">
             Adopt Me
           </Text>

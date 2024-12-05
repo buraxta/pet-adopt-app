@@ -37,16 +37,16 @@ export default function home() {
       <Header />
       <Slider />
       <ListByCategory />
-      <TouchableOpacity className="flex-row mt-5 bg-sky-200 p-5 gap-3 items-center border border-dashed border-sky-600 rounded-lg justify-center">
-        <MaterialIcons name="pets" size={24} color={"#0369a1"} />
-        <Link href="/addNewPet" asChild>
-          <Pressable>
-            <Text className="text-xl font-pmedium text-sky-700">
-              Add New Pet
-            </Text>
-          </Pressable>
-        </Link>
-      </TouchableOpacity>
+      <Link
+        className="flex-row mt-5 bg-sky-200 p-5 gap-3 items-center border border-dashed border-sky-600 rounded-lg justify-center"
+        href="/addNewPet"
+        asChild
+      >
+        <Pressable>
+          <MaterialIcons name="pets" size={24} color={"#0369a1"} />
+          <Text className="text-xl font-pmedium text-sky-700">Add New Pet</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 }

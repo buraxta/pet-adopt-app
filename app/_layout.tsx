@@ -4,6 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import "react-native-reanimated";
+
 import "../global.css";
 import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
@@ -77,7 +78,7 @@ export default function RootLayout() {
           />
           <Stack.Screen
             name="addNewPet/index"
-            options={{ headerShown: false }}
+            options={{ headerTransparent: true, headerTitle: "" }}
           />
         </Stack>
         <StatusBar style="auto" />

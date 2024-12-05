@@ -14,7 +14,7 @@ export default function LoginScreen() {
     <SafeAreaView className=" h-full flex-1 ">
       <ImageBackground
         source={require("@/assets/images/bg.png")}
-        className="w-full h-full  "
+        className="w-full h-full"
       >
         <Stack.Screen options={{ headerShown: false }} />
 
