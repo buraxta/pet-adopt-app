@@ -2,7 +2,7 @@ import { View, Text, Pressable, Image } from "react-native";
 import React from "react";
 import { Link, router } from "expo-router";
 import { useAuth, useUser } from "@clerk/clerk-expo";
-import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 export default function profile() {
   const { signOut } = useAuth();
@@ -48,6 +48,16 @@ export default function profile() {
           <Pressable>
             <Entypo name="heart" size={24} color="#0369a1" />
             <Text className="text-xl font-pmedium text-sky-700">Favorites</Text>
+          </Pressable>
+        </Link>
+        <Link
+          className="flex-row mt-5 bg-sky-200 p-5 gap-3 items-center border border-dashed border-sky-600 rounded-lg justify-center"
+          href="/user-post"
+          asChild
+        >
+          <Pressable>
+            <AntDesign name="book" size={24} color="black" />
+            <Text className="text-xl font-pmedium text-sky-700">My Post</Text>
           </Pressable>
         </Link>
         <Link
