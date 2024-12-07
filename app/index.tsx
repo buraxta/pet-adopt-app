@@ -7,5 +7,5 @@ export default function IndexPage() {
 
   if (!rootNavigationState?.key) return null;
 
-  return <Redirect href={"/landing"} />;
+  return <Redirect href={"/home"} />;
 }

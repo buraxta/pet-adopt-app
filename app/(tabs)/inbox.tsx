@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "@/config/FirebaseConfig";
 import { useUser } from "@clerk/clerk-expo";
-import UserItem from "@/components/Inbox/userItem";
+import UserItem from "@/components/Inbox/UserItem";
 
 export default function Inbox() {
   const { user } = useUser();
