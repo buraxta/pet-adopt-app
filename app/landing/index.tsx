@@ -16,7 +16,7 @@ export default function LoginScreen() {
         source={require("@/assets/images/bg.png")}
         className="w-full h-full"
       >
-        <Stack.Screen options={{ headerShown: false }} />
+        {/* <Stack.Screen options={{ headerShown: false }} /> */}
 
         <Image
           source={require("@/assets/images/login.jpg")}

@@ -21,6 +21,7 @@ export default function profile() {
     <View className="p-5 mt-5">
       <View className="w-full  items-center mt-16">
         <Image
+          testID="user-image"
           source={{ uri: user?.imageUrl }}
           style={{ width: 100, height: 100, borderRadius: 50 }}
         />

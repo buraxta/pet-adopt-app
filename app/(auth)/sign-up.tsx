@@ -73,7 +73,7 @@ export default function SignUpScreen() {
 
   return (
     <View>
-      <Stack.Screen options={{ headerShown: false }} />
+      {/* <Stack.Screen options={{ headerShown: false }} /> */}
       <ImageBackground
         source={require("@/assets/images/login-bg.png")}
         className="w-full h-full justify-center items-center"

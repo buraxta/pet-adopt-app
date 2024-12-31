@@ -289,7 +289,10 @@ export default function index() {
               disabled={uploading}
               className="flex-row mt-5 bg-sky-200 p-5 gap-3 items-center border border-dashed border-sky-600 rounded-lg justify-center"
             >
-              <Text className="text-xl font-pmedium text-sky-700">
+              <Text
+                className="text-xl font-pmedium text-sky-700"
+                testID="add-new-pet"
+              >
                 Add New Pet
               </Text>
             </TouchableOpacity>

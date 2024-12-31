@@ -51,7 +51,7 @@ export default function Page() {
 
   return (
     <SafeAreaView className="flex-1 ">
-      <Stack.Screen options={{ headerShown: false }} />
+      {/* <Stack.Screen options={{ headerShown: false }} /> */}
       <ImageBackground
         source={require("@/assets/images/login-bg.png")}
         className="w-full h-full justify-center items-center"
