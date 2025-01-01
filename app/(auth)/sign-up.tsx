@@ -79,7 +79,9 @@ export default function SignUpScreen() {
         className="w-full h-full justify-center items-center"
       >
         <View className="-mt-[10rem]">
-          <Text className="font-pbold text-4xl text-red-800">Welcome!</Text>
+          <Text className="font-pbold text-4xl text-red-800">
+            Welcome YYYYY!
+          </Text>
           <Text className="text-xl">
             {pendingVerification
               ? "Please enter the code sent to your email."
