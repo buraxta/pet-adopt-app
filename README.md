@@ -1,50 +1,43 @@
-# Welcome to your Expo app 👋
+# Pet Adopt App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Get started
+**Pet Adopt App** is a mobile application developed with React Native as part of a university software engineering course project. The app allows users to sign up, log in, add pets, remove pets, chat with pet owners to express adoption interest, and add pets to their favorites list. It is designed to provide a seamless and interactive experience for pet adoption.
 
-1. Install dependencies
+<div style="display: flex; justify-content: space-between;">
+   <img src="https://github.com/buraxta/pet-adopt-app/blob/master/ss/1.png?raw=true" alt="Home Screen" width="30%" />
+   <img src="https://github.com/buraxta/pet-adopt-app/blob/master/ss/2.png?raw=true" alt="Quiz Screen" width="30%" />
+</div>
+  
+## Features
+- **User Authentication**: Sign up and log in using secure authentication.
+- **Pet Management**: Add, remove, and view pets.
+- **Adoption Requests**: Chat with pet owners to express interest in adopting a pet.
+- **Favorites**: Save pets to your favorites list for easy access.
+- **Responsive UI**: A clean and user-friendly interface built with modern design principles.
 
-   ```bash
-   npm install
-   ```
+## Tech Stack
+- **Frontend**: React Native, Expo Router, NativeWind (TailwindCSS for React Native)
+- **State Management**: React Context API
+- **Authentication**: Clerk
+- **Database**: Firebase (Firestore for real-time data)
+- **Image Upload**: Cloudinary
+- **Chat**: React Native Gifted Chat
+- **Styling**: Gluestack UI, Expo Vector Icons
+- **Other Libraries**: Axios, Moment.js, React Navigation, React Native Reanimated
 
-2. Start the app
+## Project Structure
+- **Authentication**: Handles user sign-up, login, and session management.
+- **Pet Management**: Allows users to add, remove, and view pets.
+- **Chat**: Enables real-time communication between users for adoption requests.
+- **Favorites**: Manages the user's list of favorite pets.
+- **UI Components**: Reusable components for buttons, inputs, and modals.
 
-   ```bash
-    npx expo start
-   ```
+## Contribution
+Feel free to contribute to this project by opening issues or submitting pull requests. Your feedback and improvements are always welcome!
 
-In the output, you'll find options to open the app in a
+## License
+This project is open-source and available under the MIT License.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Happy coding! 🚀
